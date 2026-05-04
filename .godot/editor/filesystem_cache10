@@ -1,0 +1,16 @@
+63f7b34db8d8cdea90c76aacccf841ec
+::res://::1777898378
+hamod.gd::GDScript::6502459184477782252::1777827253::0::1::::<>CharacterBody2D<><>0<>0<><>::
+icon.svg::CompressedTexture2D::6766815371591432353::1777726575::1777726578::1::::<><><>0<>0<>3cea830477caf3d18d1c1a438932d640<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
+node_2d.tscn::PackedScene::7411386377462292648::1777827254::0::1::::<><><>0<>0<><>::uid://cyv3s18f7fk65::::res://hamod.gd<>uid://dsmv7q4k8mscr::::res://Sprites/Hamood_Act_4.png<>uid://b5if3q6kyg4o7::::res://Sprites/RobloxSpawn.webp<>uid://c3n5pwmrqvmbh::::res://icon.svg
+README.md::TextFile::-1::1777728830::0::1::::<><><>0<>0<><>::
+::res://addons/::1777728830
+::res://addons/godot_vim/::1777728830
+godot_vim.gd::GDScript::8930163974508575761::1777728830::0::1::::<>EditorPlugin<><>0<>1<><>::
+godot_vim.gdextension::GDExtension::1796753419629518057::1777728830::0::1::::<><><>0<>0<><>::
+plugin.cfg::TextFile::-1::1777728830::0::1::::<><><>0<>0<><>::
+::res://addons/godot_vim/bin/::1777728830
+::res://BGs/::1777734004
+::res://Sprites/::1777735037
+Hamood_Act_4.png::CompressedTexture2D::8448766857537532045::1770172582::1777734474::1::::<><><>0<>0<>60615caf7c04da554afd7ec003e33351<>res://.godot/imported/Hamood_Act_4.png-b0df53dffdb16a2c52aa8ff153d58ebc.ctex::
+RobloxSpawn.webp::CompressedTexture2D::4508955490808955552::1777734969::1777735037::1::::<><><>0<>0<>1af56678cf29d03cd5b45dbec685022b<>res://.godot/imported/RobloxSpawn.webp-cc70e4fe4dfaf26dec1db8cb5448b17e.ctex::
