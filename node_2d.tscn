@@ -96,19 +96,24 @@ height = 62.0
 [node name="Node2D" type="Node2D" unique_id=1732592881]
 
 [node name="hamod" type="CharacterBody2D" parent="." unique_id=1666035019]
+position = Vector2(151, 203)
 script = ExtResource("1_epypp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="hamod" unique_id=1700264525]
+position = Vector2(195, 5)
 sprite_frames = SubResource("SpriteFrames_ta5nu")
 animation = &"Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hamod" unique_id=1573908008]
-position = Vector2(0, 3)
+position = Vector2(197, 4)
 shape = SubResource("CapsuleShape2D_q6r6c")
 
 [node name="SpawnPoint2D" type="Sprite2D" parent="." unique_id=1452055257]
 position = Vector2(665, 242)
 texture = ExtResource("3_0hol4")
+
+[node name="Marker2D" type="Marker2D" parent="SpawnPoint2D" unique_id=1944019948]
+position = Vector2(-233, -102)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=87900698]
 position = Vector2(432, 140)

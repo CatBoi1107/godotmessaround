@@ -1,57 +1,57 @@
+
 extends CharacterBody2D
 
-@onready var AnimatedSprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @export var speed = 300.0
-@export var gravity = 4500
-const acceleration = 800.0
-const deceleration = 500.0
+@export var gravity = 1500.0 
+@export var acceleration = 1200.0
+@export var friction = 1000.0
+@export var direction = Vector2.ZERO
+@export var jump_strength = -1000
+@export var max_jump = 2
+
+var currentJump = 0
 
 func _physics_process(delta: float) -> void:
-	var direction = Vector2.ZERO
-	
-	var is_falling = velocity.y > 0 and not is_on_floor()
-	var is_idle = velocity == Vector2.ZERO
-	var is_moving = not is_idle
-
-	if is_idle:
-		AnimatedSprite.play("Idle")
-	else:
-		AnimatedSprite.play("Run")
-	if not is_on_floor():
+	var is_floating = not is_on_floor()
+	var is_horizontallyIdle = velocity.x == 0
+	var is_verticallyIdle = velocity.y == 0
+	#Kalo lagi ga di floor, apply gravity
+	if is_floating:
 		velocity.y += gravity * delta
 
-	if Input.is_action_pressed("move_right"):
-		direction.x += 1
-		up_direction = Vector2(-1, 0)
-	if Input.is_action_pressed("move_left"):
-		direction.x -= 1
-		up_direction = Vector2(1, 0)
-	if Input.is_action_pressed("move_down"):
-		direction.y += 1
-		up_direction = Vector2(0, -1)
-	if Input.is_action_pressed("move_up"):
-		direction.y -= 1
-		up_direction = Vector2(0, 1)
-		
-	if not is_on_floor():
-		velocity += -up_direction * gravity * delta
-
-	if direction != Vector2.ZERO:
-		direction = direction.normalized()
-		velocity = velocity.move_toward(direction * speed, acceleration * delta)
+	# Fetch horizontal direction
+	direction.x = Input.get_axis("press_a", "press_d")
+	
+	if is_on_floor():
+		currentJump = 0
+	#Lompat
+	if Input.is_action_just_pressed("press_space"):
+		if currentJump < max_jump:
+			velocity.y = jump_strength
+			currentJump += 1
+	
+	# 3. Handle Movement & Friction
+	if direction.x != 0:
+		velocity.x = move_toward(velocity.x, direction.x * speed, acceleration * delta)
+		animated_sprite.flip_h = (direction.x < 0) # Flip sprite based on direction
+		animated_sprite.play("Run")
 	else:
-		velocity = velocity.move_toward(Vector2.ZERO, deceleration * delta)
-		
-	if get_position_delta().x > 10:
-		position.x = -10
-	elif get_position_delta().x < -10:
-		position.x = 10
+		velocity.x = move_toward(velocity.x, 0, friction * delta)
+		if velocity.y == 0: # Only play idle if not jumping/falling
+			animated_sprite.play("Idle")
 
+	# 4. Vertical Animations
+	if not is_on_floor():
+		# Optional: play a jump/fall animation here
+		pass
+
+	# 5. Execute Movement
 	move_and_slide()
-	apply_floor_snap()
 
 func _ready():
-	AnimatedSprite.play("Idle")
-	var spawn_point = get_parent().get_node("SpawnPoint2D")
+	animated_sprite.play("Idle")
+	direction = Vector2.ZERO
+	var spawn_point = get_parent().get_node_or_null("SpawnPoint2D")
 	if spawn_point:
 		global_position = spawn_point.global_position
